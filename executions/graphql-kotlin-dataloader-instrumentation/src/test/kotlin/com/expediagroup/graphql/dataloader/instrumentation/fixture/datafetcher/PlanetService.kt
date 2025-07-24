@@ -33,13 +33,14 @@ class PlanetsByMissionDataLoader : KotlinDataLoader<PlanetServiceRequest, List<P
     override val dataLoaderName: String = "PlanetsByMissionDataLoader"
     override fun getDataLoader(graphQLContext: GraphQLContext): DataLoader<PlanetServiceRequest, List<Planet>> =
         DataLoaderFactory.newDataLoader(
+            dataLoaderName,
             { keys ->
                 PlanetRepository
                     .getPlanetsByMissionIds(keys.map(PlanetServiceRequest::missionId))
                     .collectList()
                     .toFuture()
             },
-            DataLoaderOptions.newOptions().setStatisticsCollector(::SimpleStatisticsCollector)
+            DataLoaderOptions.newOptions().setStatisticsCollector(::SimpleStatisticsCollector).build()
         )
 }
 

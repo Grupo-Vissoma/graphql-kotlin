@@ -26,7 +26,7 @@ import org.dataloader.DataLoader
 import org.dataloader.DataLoaderFactory
 import org.dataloader.DataLoaderOptions
 import org.dataloader.stats.SimpleStatisticsCollector
-import java.util.Optional
+import java.util.*
 import java.util.concurrent.CompletableFuture
 
 data class MissionServiceRequest(val id: Int, val astronautId: Int = -1)
@@ -35,6 +35,7 @@ class MissionDataLoader : KotlinDataLoader<MissionServiceRequest, Mission?> {
     override val dataLoaderName: String = "MissionDataLoader"
     override fun getDataLoader(graphQLContext: GraphQLContext): DataLoader<MissionServiceRequest, Mission?> =
         DataLoaderFactory.newDataLoader(
+            dataLoaderName,
             { keys ->
                 MissionRepository
                     .getMissions(keys.map(MissionServiceRequest::id))
@@ -42,7 +43,7 @@ class MissionDataLoader : KotlinDataLoader<MissionServiceRequest, Mission?> {
                     .map(List<Optional<Mission>>::toListOfNullables)
                     .toFuture()
             },
-            DataLoaderOptions.newOptions().setStatisticsCollector(::SimpleStatisticsCollector)
+            DataLoaderOptions.newOptions().setStatisticsCollector(::SimpleStatisticsCollector).build()
         )
 }
 
@@ -50,12 +51,13 @@ class MissionsByAstronautDataLoader : KotlinDataLoader<MissionServiceRequest, Li
     override val dataLoaderName: String = "MissionsByAstronautDataLoader"
     override fun getDataLoader(graphQLContext: GraphQLContext): DataLoader<MissionServiceRequest, List<Mission>> =
         DataLoaderFactory.newDataLoader(
+            dataLoaderName,
             { keys ->
                 MissionRepository
                     .getMissionsByAstronautIds(keys.map(MissionServiceRequest::astronautId))
                     .collectList().toFuture()
             },
-            DataLoaderOptions.newOptions().setStatisticsCollector(::SimpleStatisticsCollector)
+            DataLoaderOptions.newOptions().setStatisticsCollector(::SimpleStatisticsCollector).build()
         )
 }
 
@@ -77,6 +79,7 @@ class MissionService {
                 .getDataLoader<MissionServiceRequest, Mission>("MissionDataLoader")
                 ?.loadMany(requests) ?: throw IllegalArgumentException("No data loader called MissionDataLoader was found")
         }
+
         else -> {
             MissionRepository
                 .getMissions(emptyList())

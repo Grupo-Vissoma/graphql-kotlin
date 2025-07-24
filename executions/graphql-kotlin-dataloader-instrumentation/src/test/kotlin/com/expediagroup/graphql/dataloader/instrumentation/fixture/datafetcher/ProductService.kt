@@ -26,13 +26,14 @@ import org.dataloader.DataLoader
 import org.dataloader.DataLoaderFactory
 import org.dataloader.DataLoaderOptions
 import org.dataloader.stats.SimpleStatisticsCollector
-import java.util.Optional
+import java.util.*
 import java.util.concurrent.CompletableFuture
 
 class ProductDataLoader : KotlinDataLoader<ProductServiceRequest, Product?> {
     override val dataLoaderName: String = "ProductDataLoader"
     override fun getDataLoader(graphQLContext: GraphQLContext): DataLoader<ProductServiceRequest, Product?> =
         DataLoaderFactory.newDataLoader(
+            dataLoaderName,
             { requests ->
                 ProductRepository
                     .getProducts(requests)
@@ -40,7 +41,7 @@ class ProductDataLoader : KotlinDataLoader<ProductServiceRequest, Product?> {
                     .map(List<Optional<Product>>::toListOfNullables)
                     .toFuture()
             },
-            DataLoaderOptions.newOptions().setStatisticsCollector(::SimpleStatisticsCollector)
+            DataLoaderOptions.newOptions().setStatisticsCollector(::SimpleStatisticsCollector).build()
         )
 }
 

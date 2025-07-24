@@ -31,7 +31,7 @@ import org.dataloader.DataLoaderOptions
 import org.dataloader.stats.SimpleStatisticsCollector
 import reactor.kotlin.core.publisher.toMono
 import java.time.Duration
-import java.util.Optional
+import java.util.*
 import java.util.concurrent.CompletableFuture
 
 data class AstronautServiceRequest(val id: Int)
@@ -41,6 +41,7 @@ class AstronautDataLoader : KotlinDataLoader<AstronautServiceRequest, Astronaut?
     override val dataLoaderName: String = "AstronautDataLoader"
     override fun getDataLoader(graphQLContext: GraphQLContext): DataLoader<AstronautServiceRequest, Astronaut?> =
         DataLoaderFactory.newDataLoader(
+            dataLoaderName,
             { keys ->
                 AstronautRepository
                     .getAstronauts(keys.map(AstronautServiceRequest::id))
@@ -48,7 +49,7 @@ class AstronautDataLoader : KotlinDataLoader<AstronautServiceRequest, Astronaut?
                     .map(List<Optional<Astronaut>>::toListOfNullables)
                     .toFuture()
             },
-            DataLoaderOptions.newOptions().setStatisticsCollector(::SimpleStatisticsCollector)
+            DataLoaderOptions.newOptions().setStatisticsCollector(::SimpleStatisticsCollector).build()
         )
 }
 
@@ -75,6 +76,7 @@ class AstronautService {
                 .getDataLoader<AstronautServiceRequest, Astronaut>("AstronautDataLoader")
                 ?.loadMany(requests) ?: throw IllegalArgumentException("No data loader called AstronautDataLoader was found")
         }
+
         else -> {
             AstronautRepository
                 .getAstronauts(emptyList())
