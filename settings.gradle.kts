@@ -1,5 +1,16 @@
 rootProject.name = "graphql-kotlin"
 
+pluginManagement {
+    repositories {
+        // Spring publishes pre-releases here
+        maven { url = uri("https://repo.spring.io/milestone") }
+        maven { url = uri("https://repo.spring.io/snapshot") }
+        // Keep the default portal for everything else
+        gradlePluginPortal()
+    }
+}
+
+
 enableFeaturePreview("TYPESAFE_PROJECT_ACCESSORS")
 
 // Clients

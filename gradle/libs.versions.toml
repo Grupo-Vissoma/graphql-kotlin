@@ -22,8 +22,8 @@ poet = "1.17.0"
 reactor-core = "3.6.7"
 reactor-extensions = "1.2.2"
 slf4j = "2.0.13"
-spring = "6.1.10"
-spring-boot = "3.2.7"
+spring = "6.2.9"
+spring-boot = "4.0.0-M1"
 
 # security vulnerabilities overrides
 commons-codec = { strictly = "[1.13, 2[", prefer = "1.16.0" }
