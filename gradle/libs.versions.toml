@@ -7,7 +7,7 @@ graphql-java = "23.1"
 graalvm = "0.10.2"
 jackson = "2.17.1"
 # kotlin version has to match the compile-testing compiler version
-kotlin = "2.0.0"
+kotlin = "2.2.0"
 kotlinx-benchmark = "0.4.13"
 kotlinx-coroutines = "1.9.0"
 # TODO kotlin 1.9 upgrade: fix GraphQLTestUtils and GenerateKotlinxClientIT
@@ -29,7 +29,7 @@ spring-boot = "4.0.0-M1"
 commons-codec = { strictly = "[1.13, 2[", prefer = "1.16.0" }
 
 # test dependencies
-compile-testing = "0.5.1"
+compile-testing = "0.8.0"
 icu = "75.1"
 junit = "5.10.2"
 junit-platform = "1.10.1"
@@ -60,7 +60,7 @@ graphql-java = { group = "com.graphql-java", name = "graphql-java", version.ref 
 jackson = { group = "com.fasterxml.jackson.module", name = "jackson-module-kotlin", version.ref = "jackson" }
 kotlin-gradle-api = { group = "org.jetbrains.kotlin", name = "kotlin-gradle-plugin-api", version.ref = "kotlin" }
 kotlin-reflect = { group = "org.jetbrains.kotlin", name = "kotlin-reflect", version.ref = "kotlin" }
-kotlin-serialization = { group = "org.jetbrains.kotlin", name = "kotlin-serialization", version.ref= "kotlin" }
+kotlin-serialization = { group = "org.jetbrains.kotlin", name = "kotlin-serialization", version.ref = "kotlin" }
 kotlin-stdlib = { group = "org.jetbrains.kotlin", name = "kotlin-stdlib", version.ref = "kotlin" }
 kotlinx-coroutines-core = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-core", version.ref = "kotlinx-coroutines" }
 kotlinx-coroutines-jdk8 = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-jdk8", version.ref = "kotlinx-coroutines" }
