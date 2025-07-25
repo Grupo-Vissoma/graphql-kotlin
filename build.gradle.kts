@@ -5,7 +5,7 @@ description = "Libraries for running a GraphQL server in Kotlin"
 extra["isReleaseVersion"] = !version.toString().endsWith("SNAPSHOT")
 
 plugins {
-    alias(libs.plugins.nexus.publish)
+//    alias(libs.plugins.nexus.publish)
     id("maven-publish")
 }
 
