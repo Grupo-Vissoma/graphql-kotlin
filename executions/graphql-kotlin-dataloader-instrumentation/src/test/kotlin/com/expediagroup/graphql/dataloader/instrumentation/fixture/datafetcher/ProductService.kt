@@ -26,7 +26,7 @@ import org.dataloader.DataLoader
 import org.dataloader.DataLoaderFactory
 import org.dataloader.DataLoaderOptions
 import org.dataloader.stats.SimpleStatisticsCollector
-import java.util.*
+import java.util.Optional
 import java.util.concurrent.CompletableFuture
 
 class ProductDataLoader : KotlinDataLoader<ProductServiceRequest, Product?> {

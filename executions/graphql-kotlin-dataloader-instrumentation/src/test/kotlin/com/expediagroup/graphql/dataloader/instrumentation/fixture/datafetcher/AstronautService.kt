@@ -31,7 +31,7 @@ import org.dataloader.DataLoaderOptions
 import org.dataloader.stats.SimpleStatisticsCollector
 import reactor.kotlin.core.publisher.toMono
 import java.time.Duration
-import java.util.*
+import java.util.Optional
 import java.util.concurrent.CompletableFuture
 
 data class AstronautServiceRequest(val id: Int)

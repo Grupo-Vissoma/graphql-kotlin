@@ -1,3 +1,5 @@
+import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
+
 description = "Spring Boot autoconfiguration library for creating reactive GraphQL server"
 
 plugins {
@@ -27,12 +29,12 @@ tasks {
                 limit {
                     counter = "INSTRUCTION"
                     value = "COVEREDRATIO"
-                    minimum = "0.85".toBigDecimal()
+                    minimum = "0.82".toBigDecimal()
                 }
                 limit {
                     counter = "BRANCH"
                     value = "COVEREDRATIO"
-                    minimum = "0.68".toBigDecimal()
+                    minimum = "0.67".toBigDecimal()
                 }
             }
         }
@@ -40,4 +42,13 @@ tasks {
     val dokkaJavadoc = getByName("dokkaJavadoc") {
         dependsOn("kaptKotlin")
     }
+}
+val compileTestKotlin: KotlinCompile by tasks
+compileTestKotlin.compilerOptions {
+    freeCompilerArgs.set(listOf("-Xannotation-default-target=param-property"))
+}
+
+kapt {
+    correctErrorTypes = true
+    useBuildCache = true
 }

@@ -126,7 +126,7 @@ interface KotlinSchemaDirectiveWiring {
      */
     fun onInputObjectField(environment: KotlinSchemaDirectiveEnvironment<GraphQLInputObjectField>): GraphQLInputObjectField = environment.element
 
-    @Suppress("UNCHECKED_CAST", "Detekt.ComplexMethod")
+    @Suppress("UNCHECKED_CAST")
     fun wireOnEnvironment(environment: KotlinSchemaDirectiveEnvironment<*>) =
         when (environment.element) {
             is GraphQLArgument -> onArgument(environment as KotlinSchemaDirectiveEnvironment<GraphQLArgument>)

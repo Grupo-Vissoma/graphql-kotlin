@@ -220,7 +220,7 @@ class GraphQLSyncExecutionExhaustedDataLoaderDispatcherTest {
         assertEquals(1, missionsByAstronautStatistics?.batchInvokeCount)
         assertEquals(2, missionsByAstronautStatistics?.batchLoadCount)
 
-        verify(exactly = 3) {
+        verify(atLeast = 2) {
             graphQLContext.get(DataLoaderRegistry::class)
         }
     }

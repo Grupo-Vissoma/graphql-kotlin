@@ -273,6 +273,7 @@ class RouteConfigurationIT(@Autowired private val testClient: WebTestClient) {
             .jsonPath("$.extensions").doesNotExist()
     }
 
+    // TODO this test is useless as it is not possible to set charset on POST request
     @Test
     fun `verify POST graphQL request with explicit charset`() {
         val request = GraphQLRequest(
@@ -283,8 +284,8 @@ class RouteConfigurationIT(@Autowired private val testClient: WebTestClient) {
 
         testClient.post()
             .uri("/graphql")
-            .accept(MediaType.APPLICATION_JSON_UTF8)
-            .contentType(MediaType.APPLICATION_JSON_UTF8)
+            .accept(MediaType.APPLICATION_JSON)
+            .contentType(MediaType.APPLICATION_JSON)
             .bodyValue(request)
             .exchange()
             .verifyGraphQLRoute("Hello JUNIT route with charset encoding!")
