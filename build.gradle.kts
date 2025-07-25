@@ -15,7 +15,7 @@ allprojects {
             mavenCentral()
             mavenLocal {
                 content {
-                    includeGroup("com.expediagroup")
+                    includeGroup("pt.grupovissoma")
                 }
             }
         }
@@ -26,7 +26,7 @@ allprojects {
         google()
         mavenLocal {
             content {
-                includeGroup("com.expediagroup")
+                includeGroup("pt.grupovissoma")
             }
         }
     }
