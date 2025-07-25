@@ -46,10 +46,8 @@ internal fun generateDirectives(
 
     return annotations
         .mapNotNull { it.getDirectiveInfo() }
+        .filter { it.directiveAnnotation.locations.contains(location) }
         .map {
-            if (!it.directiveAnnotation.locations.contains(location)) {
-                throw InvalidDirectiveLocationException(it.effectiveName, it.directiveAnnotation.locations, location, element.toString())
-            }
             getDirective(generator, it)
         }
 }
