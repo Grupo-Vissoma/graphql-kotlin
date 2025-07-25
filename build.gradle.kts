@@ -33,19 +33,19 @@ allprojects {
 }
 
 tasks {
-    nexusPublishing {
-        repositories {
-            sonatype {
-                username.set(System.getenv("SONATYPE_USERNAME"))
-                password.set(System.getenv("SONATYPE_PASSWORD"))
-            }
-        }
-
-        transitionCheckOptions {
-            maxRetries.set(60)
-            delayBetween.set(Duration.ofMillis(5000))
-        }
-    }
+//    nexusPublishing {
+//        repositories {
+//            sonatype {
+//                username.set(System.getenv("SONATYPE_USERNAME"))
+//                password.set(System.getenv("SONATYPE_PASSWORD"))
+//            }
+//        }
+//
+//        transitionCheckOptions {
+//            maxRetries.set(60)
+//            delayBetween.set(Duration.ofMillis(5000))
+//        }
+//    }
 
     register("resolveIntegrationTestDependencies") {
         // our Gradle and Maven integration tests run in separate VMs that will need access to the generated artifacts
