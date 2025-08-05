@@ -79,7 +79,7 @@ internal fun requiresScopesDirectiveType(scopes: GraphQLScalarType): graphql.sch
                     GraphQLList.list(
                         GraphQLNonNull(
                             GraphQLList.list(
-                                scopes
+                                GraphQLNonNull.nonNull(scopes)
                             )
                         )
                     )
