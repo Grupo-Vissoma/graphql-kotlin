@@ -36,7 +36,6 @@ import graphql.introspection.Introspection
  * @see <a href="https://www.apollographql.com/docs/router/configuration/authorization#authenticated">Apollo Router @authenticated documentation</a>
  */
 @LinkedSpec(FEDERATION_SPEC)
-@Repeatable
 @GraphQLDirective(
     name = AUTHENTICATED_DIRECTIVE_NAME,
     description = AUTHENTICATED_DIRECTIVE_DESCRIPTION,
