@@ -42,7 +42,7 @@ import kotlin.reflect.full.memberProperties
  * @see <a href="https://www.apollographql.com/docs/federation/federated-types/federated-directives#requiresscopes">@requiresScope definition</a>
  * @see <a href="https://www.apollographql.com/docs/router/configuration/authorization#requiresscopes">Apollo Router @requiresScope documentation</a>
  */
-@LinkedSpec(FEDERATION_SPEC)
+//@LinkedSpec(FEDERATION_SPEC)
 @Repeatable
 @GraphQLDirective(
     name = REQUIRES_SCOPE_DIRECTIVE_NAME,

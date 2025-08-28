@@ -285,7 +285,7 @@ open class FederatedSchemaGeneratorHooks(
 
     private fun namespacedTypeName(specification: String, name: String): String {
         val spec = linkSpecs[specification] ?: throw UnknownSpecificationException(name, specification)
-        return spec.imports[name] ?: "${spec.namespace}__$name"
+        return spec.imports[name] ?: "$name"
     }
 
     override fun didBuildSchema(builder: GraphQLSchema.Builder): GraphQLSchema.Builder {
